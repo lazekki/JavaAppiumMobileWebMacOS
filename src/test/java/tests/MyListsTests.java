@@ -42,6 +42,7 @@ public class MyListsTests extends CoreTestCase {
             ArticlePageObject.addArticlesToMySaved();
             ArticlePageObject.closeOverlayIfSaveArticleFirstTime();
         } else {
+
             AuthorizationPageObject Auth = new AuthorizationPageObject(driver);
             Auth.clickAuthButton();
             Auth.enterLoginData(login, password);

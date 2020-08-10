@@ -4,7 +4,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class AuthorizationPageObject extends MainPageObject {
     private static final String
-        MAIN_MENU_BUTTON = "css:#mw-mf-main-menu-button",
+        LIST_BEFORE_AUTH = "css:a[data-event-name='menu.watch']",
         LOGIN_BUTTON = "xpath://body/xpath/div/a[text()='Log in']",
         LOGIN_INPUT = "css:input[name='wpName']",
         PASSWORD_INPUT = "css:input[name='wpPassword']",
@@ -15,8 +15,8 @@ public class AuthorizationPageObject extends MainPageObject {
     }
 
     public void clickAuthButton() {
-        this.waitForElementAndClick(MAIN_MENU_BUTTON, "Cannot open main menu", 5);
-        this.waitForElementPresent(LOGIN_BUTTON, "Cannot find auth button", 5);
+        this.waitForElementAndClick(LIST_BEFORE_AUTH, "Cannot call auth menu", 10);
+        this.waitForElementPresent(LOGIN_BUTTON, "Cannot find auth button", 10);
         this.waitForElementAndClick(LOGIN_BUTTON, "Cannot find and click auth button", 5);
     }
 
@@ -33,7 +33,7 @@ public class AuthorizationPageObject extends MainPageObject {
     }
 
     public void submitForm() {
-        this.waitForElementAndClick(SUBMIT_BUTTON, "Cannot find and clict submit auth button", 5);
+        this.waitForElementAndClick(SUBMIT_BUTTON, "Cannot find and click submit auth button", 5);
     }
 
 }

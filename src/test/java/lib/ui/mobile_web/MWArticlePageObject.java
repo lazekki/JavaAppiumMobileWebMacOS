@@ -9,7 +9,13 @@ public class MWArticlePageObject extends ArticlePageObject {
         TITLE = "css:#content h1";
         FOOTER_ELEMENT = "css:footer";
         OPTIONS_ADD_TO_MY_LIST_BUTTON = "css:#page-actions li#ca-watch.mw-ui-icon-mf-watch button";
-        OPTIONS_REMOVE_FROM_MY_LIST_BUTTON = "css#page-actions li#ca-watch.mw-ui-icon-mf-watched watched button";
+        //"#ca-watch"
+        //"<a id="ca-watch"
+        // href="/w/index.php?title=Special:UserLogin&amp;returnto=Java+%28programming+language%29"
+        // class="mw-ui-icon mw-ui-icon-element mw-ui-icon-wikimedia-star-base20 mw-ui-icon-with-label-desktop watch-this-article mw-watchlink menu__item--page-actions-watch"
+        // data-mw="interface"
+        // data-event-name="menu.watch" role="button" title="Watch">Watch</a>"
+        OPTIONS_REMOVE_FROM_MY_LIST_BUTTON = "css:#page-actions li#ca-watch.mw-ui-icon-mf-watched watched button";
         /*
         * 09.08.2020 from Web Inspector:
         * css: #ca-watch

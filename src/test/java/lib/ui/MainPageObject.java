@@ -159,7 +159,7 @@ public class MainPageObject {
 
         if (Platform.getInstance().isMw()) {
             JavascriptExecutor JSExecutor = (JavascriptExecutor) driver;
-            Object js_result = JSExecutor.executeAsyncScript("return window.pageYOffset");
+            Object js_result = JSExecutor.executeScript("return window.pageYOffset");
             element_location_by_y -= Integer.parseInt(js_result.toString());
         }
 
