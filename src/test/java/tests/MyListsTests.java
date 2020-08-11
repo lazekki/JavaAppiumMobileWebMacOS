@@ -33,7 +33,6 @@ public class MyListsTests extends CoreTestCase {
 
         ArticlePageObject ArticlePageObject = ArticlePageObjectFactory.get(driver);
         ArticlePageObject.waitForTitleElement();
-
         String article_title = ArticlePageObject.getArticleTitle();
 
         if (Platform.getInstance().isAndroid()) {
@@ -43,6 +42,7 @@ public class MyListsTests extends CoreTestCase {
             ArticlePageObject.closeOverlayIfSaveArticleFirstTime();
         } else {
 
+            //ArticlePageObject.addArticlesToMySaved();
             AuthorizationPageObject Auth = new AuthorizationPageObject(driver);
             Auth.clickAuthButton();
             Auth.enterLoginData(login, password);
