@@ -86,7 +86,7 @@ public class Platform {
     private ChromeOptions getMwChromeOptions() {
         Map<String, Object> deviceMetrics = new HashMap<>();
         deviceMetrics.put("width", 360);
-        deviceMetrics.put("height", 640);
+        deviceMetrics.put("height", 720);
         deviceMetrics.put("pixelRatio", 3.0);
 
         Map<String, Object> mobileEmulation = new HashMap<>();
@@ -96,7 +96,7 @@ public class Platform {
                 "Chrome/18.0.1025.166 Mobile Safari/535.19");
 
         ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("window-size=340,640");
+        chromeOptions.addArguments("window-size=340,720");
 
         return chromeOptions;
     }

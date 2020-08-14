@@ -1,6 +1,7 @@
 package lib.ui;
 
 import io.appium.java_client.AppiumDriver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -89,6 +90,7 @@ abstract public class SearchPageObject extends MainPageObject {
 
     public void clickByArticleWithSubString (String substring){
         String search_result_xpath = getResultSearchElement(substring);
+
         this.waitForElementAndClick(search_result_xpath,
                 "Cannot find and click search result with substring " + substring,
                 10

@@ -26,7 +26,7 @@ abstract public class ArticlePageObject extends MainPageObject {
         return this.waitForElementPresent(
                 TITLE,
                 "Cannot find article title on page!",
-                15
+                20
         );
     }
 
@@ -97,16 +97,15 @@ abstract public class ArticlePageObject extends MainPageObject {
     }
 
     public void addArticlesToMySaved() {
-
         if (Platform.getInstance().isMw()) {
             this.removeArticleFromSavedIfItAdded();
         }
+            this.waitForElementAndClick(
+                    OPTIONS_ADD_TO_MY_LIST_BUTTON,
+                    "Cannot find option to add article to reading list",
+                    5
+            );
 
-        this.waitForElementAndClick(
-                OPTIONS_ADD_TO_MY_LIST_BUTTON,
-                "Cannot find option to add article to reading list",
-                5
-        );
     }
 
     public void removeArticleFromSavedIfItAdded() {
@@ -114,14 +113,15 @@ abstract public class ArticlePageObject extends MainPageObject {
             this.waitForElementAndClick(
                     OPTIONS_REMOVE_FROM_MY_LIST_BUTTON,
                     "Cannot click button to remove article from saved",
-                    1
+                    5
             );
 
             this.waitForElementPresent(
                     OPTIONS_ADD_TO_MY_LIST_BUTTON,
                     "Cannot find button to add an article to saved list after removing it from this list before",
-                    1
+                    5
             );
+
         }
     }
 
