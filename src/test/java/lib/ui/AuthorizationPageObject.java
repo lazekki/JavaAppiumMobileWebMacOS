@@ -19,22 +19,24 @@ public class AuthorizationPageObject extends MainPageObject {
     }
 
     public void clickAuthButton() throws InterruptedException {
-        driver.manage().timeouts().implicitlyWait(sleep_timeout, TimeUnit.SECONDS);
+        Thread.sleep(2000);
         this.waitForElementAndClick(OPTION_TO_SAVE_WITHOUT_AUTH, "Cannot call auth menu", 10);
-        driver.manage().timeouts().implicitlyWait(sleep_timeout, TimeUnit.SECONDS);
+        Thread.sleep(2000);
         this.waitForElementPresent(LOGIN_BUTTON, "Cannot find auth button", 10);
-        driver.manage().timeouts().implicitlyWait(sleep_timeout, TimeUnit.SECONDS);
+        Thread.sleep(2000);
         this.waitForElementAndClick(LOGIN_BUTTON, "Cannot find and click auth button", 5);
     }
 
-    public void enterLoginData(String login, String password) {
+    public void enterLoginData(String login, String password) throws InterruptedException{
 
-        driver.manage().timeouts().implicitlyWait(sleep_timeout, TimeUnit.SECONDS);
+        Thread.sleep(2000);
 
         this.waitForElementAndSendKeys(
                 LOGIN_INPUT, login,
                 "Cannot find and put a login to the login input",
                 5);
+
+        Thread.sleep(2000);
 
         this.waitForElementAndSendKeys(
                 PASSWORD_INPUT, password,

@@ -48,19 +48,16 @@ public class MyListsTests extends CoreTestCase {
             AuthorizationPageObject Auth = new AuthorizationPageObject(driver);
             Auth.clickAuthButton();
             Auth.enterLoginData(login, password);
-            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-
+            Thread.sleep(2000);
             Auth.submitForm();
 
-            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+            Thread.sleep(2000);
 
             ArticlePageObject.waitForTitleElement();
 
-            /*
             assertEquals("We are not on the same page after login.",
                     article_title,
                     ArticlePageObject.getArticleTitle());
-            */
 
             ArticlePageObject.addArticlesToMySaved();
         }
