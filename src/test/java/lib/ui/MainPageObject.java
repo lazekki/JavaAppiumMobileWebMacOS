@@ -279,14 +279,12 @@ public class MainPageObject {
         String by_type = exploded_locator[0];
         String locator = exploded_locator[1];
 
-        if (by_type.equals("xpath")) {
-            return By.xpath(locator);
-        } else if (by_type.equals("id")) {
-            return By.id(locator);
-        } else if (by_type.equals("css")) {
-            return By.cssSelector(locator);
-        } else {
-            throw new IllegalArgumentException("Cannot get type of locator. Locator: " + locator_with_type);
+        switch (by_type) {
+            case "xpath" : return By.xpath(locator);
+            case "id" : return By.id(locator);
+            case "css" : return By.cssSelector(locator);
+            default:
+                throw new IllegalArgumentException("Cannot get type of locator. Locator: " + locator_with_type);
         }
     }
 

@@ -1,6 +1,5 @@
 package lib.ui.ios;
 
-import io.appium.java_client.AppiumDriver;
 import lib.ui.SearchPageObject;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -16,8 +15,8 @@ public class iOSSearchPageObject extends SearchPageObject {
         SEARCH_RESULT_BY_SUBSTRING_TPL = "xpath://XCUIElementTypeLink[contains(@name, '{SUBSTRING}')]";
         SEARCH_RESULT_ELEMENT = "xpath://XCUIElementTypeLink";
         SEARCH_EMPTY_RESULT_ELEMENT = "xpath://XCUIElementTypeStaticText[@name='No results found']";
-        ARTICLE_SEARCH_FIRST_TITLE_XPATH = "xpath://XCUIElementTypeOther[contains(@name, 'Java (programming language)')]";
-        ARTICLE_SEARCH_SECOND_TITLE_XPATH = "xpath://XCUIElementTypeOther[contains(@name, 'Java (software platform)')]";
+        IOS_ARTICLE_SEARCH_FIRST_TITLE_XPATH = "xpath://XCUIElementTypeOther[contains(@name, 'Java (programming language)')]";
+        IOS_ARTICLE_SEARCH_SECOND_TITLE_XPATH = "xpath://XCUIElementTypeOther[contains(@name, 'Java (software platform)')]";
         //TO DO for iOS tests:
         //ARTICLE_TITLE_ID = "id:org.wikipedia:id/view_page_title_text";
         ARTICLE_TITLE_XPATH = "xpath://*[@name='Java (software platform)']";

@@ -1,7 +1,5 @@
 package lib.ui;
 
-import io.appium.java_client.AppiumDriver;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -17,10 +15,13 @@ abstract public class SearchPageObject extends MainPageObject {
         SEARCH_EMPTY_RESULT_ELEMENT,
         ARTICLE_TITLE_ID,
         ARTICLE_TITLE_XPATH,
+        ARTICLE_TITLE_XPATH_IN_MY_LIST,
         ARTICLE_IN_SAVED_LIST_TITLE_XPATH,
         FIRST_ARTICLE_TITLE_XPATH,
-        ARTICLE_SEARCH_FIRST_TITLE_XPATH,
-        ARTICLE_SEARCH_SECOND_TITLE_XPATH,
+        IOS_ARTICLE_SEARCH_FIRST_TITLE_XPATH,
+        IOS_ARTICLE_SEARCH_SECOND_TITLE_XPATH,
+        MW_ARTICLE_SEARCH_FIRST_TITLE_XPATH,
+        MW_ARTICLE_SEARCH_SECOND_TITLE_XPATH,
         SEARCH_RESULT_ARTICLE_TITLE,
         SEARCH_RESULT_ARTICLE_ITEM_CONTAINER_TPL;
 
@@ -140,13 +141,25 @@ abstract public class SearchPageObject extends MainPageObject {
     }
 
     public void iOSAssertThereIsFirstArticleWithTitle() {
-        this.waitForElementPresent(ARTICLE_SEARCH_FIRST_TITLE_XPATH,
+        this.waitForElementPresent(IOS_ARTICLE_SEARCH_FIRST_TITLE_XPATH,
                 "",
                 30);
     }
 
     public void iOSAssertThereIsSecondArticleWithTitle() {
-        this.waitForElementPresent(ARTICLE_SEARCH_SECOND_TITLE_XPATH,
+        this.waitForElementPresent(IOS_ARTICLE_SEARCH_SECOND_TITLE_XPATH,
+                "",
+                30);
+    }
+
+    public void isMwAssertThereIsFirstArticleWithTitle() {
+        this.waitForElementPresent(MW_ARTICLE_SEARCH_FIRST_TITLE_XPATH,
+                "",
+                30);
+    }
+
+    public void isMwAssertThereIsSecondArticleWithTitle() {
+        this.waitForElementPresent(MW_ARTICLE_SEARCH_SECOND_TITLE_XPATH,
                 "",
                 30);
     }
@@ -154,6 +167,14 @@ abstract public class SearchPageObject extends MainPageObject {
     public WebElement collectSearchResultAsElement() {
         return this.waitForElementAndClick(
                 ARTICLE_TITLE_XPATH,
+                "Cannot find article title",
+                15
+        );
+    }
+
+    public WebElement isMWcollectSearchResultAsElement() {
+        return this.waitForElementAndClick(
+                ARTICLE_TITLE_XPATH_IN_MY_LIST,
                 "Cannot find article title",
                 15
         );
