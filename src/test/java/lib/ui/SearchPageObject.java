@@ -1,5 +1,6 @@
 package lib.ui;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -173,11 +174,7 @@ abstract public class SearchPageObject extends MainPageObject {
     }
 
     public WebElement isMWcollectSearchResultAsElement() {
-        return this.waitForElementAndClick(
-                ARTICLE_TITLE_XPATH_IN_MY_LIST,
-                "Cannot find article title",
-                15
-        );
+        return driver.findElement(By.xpath(ARTICLE_TITLE_XPATH_IN_MY_LIST));
     }
 
     public WebElement collectFromSavedListSearchResultAsElement() {

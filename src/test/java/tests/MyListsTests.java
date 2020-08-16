@@ -170,10 +170,10 @@ public class MyListsTests extends CoreTestCase {
             NavigationUI.clickMyList();
             MyListsPageObject MyListPageObject = MyListsPageObjectFactory.get(driver);
             MyListPageObject.swipeByArticleToDelete("Java (programming language)");
-            //TO COMPLETE
+            Thread.sleep(2000);
             WebElement article_in_list = SearchPageObject.isMWcollectSearchResultAsElement();
-            System.out.println(article_in_list.getText());
-            assertEquals(second_article_title, article_in_list.getAttribute("text"));
+            Thread.sleep(2000);
+            assertEquals(second_article_title, article_in_list.getText());
         }
     }
 }
