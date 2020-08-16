@@ -1,6 +1,7 @@
 package lib.ui;
 
 import lib.Platform;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -12,7 +13,9 @@ abstract public class ArticlePageObject extends MainPageObject {
         OPTIONS_BUTTON,
         IOS_MY_LIST_OVERLAY_CLOSE_BUTTON,
         OPTIONS_ADD_TO_MY_LIST_BUTTON,
+        OPTIONS_ADD_TO_MY_LIST_BUTTON_AFTER_REMOVE,
         OPTIONS_REMOVE_FROM_MY_LIST_BUTTON,
+        OPTIONS_REMOVE_FROM_MY_LIST_BUTTON_BEFORE_REMOVE,
         ADD_TO_MY_LIST_OVERLAY,
         MY_LIST_NAME_INPUT,
         MY_LIST_OK_BUTTON,
@@ -96,33 +99,60 @@ abstract public class ArticlePageObject extends MainPageObject {
         );
     }
 
-    public void addArticlesToMySaved() {
+    public void addArticlesToMySaved() throws InterruptedException {
         if (Platform.getInstance().isMw()) {
             this.removeArticleFromSavedIfItAdded();
+            Thread.sleep(1000);
         }
+
+        if(this.isElementPresent(OPTIONS_ADD_TO_MY_LIST_BUTTON)) {
             this.waitForElementAndClick(
                     OPTIONS_ADD_TO_MY_LIST_BUTTON,
-                    "Cannot find option to add article to reading list",
+                    "1 Cannot find option to add article to reading list",
                     5
             );
-
+        } else if (this.isElementPresent(OPTIONS_ADD_TO_MY_LIST_BUTTON_AFTER_REMOVE)){
+            this.waitForElementAndClick(
+                    OPTIONS_ADD_TO_MY_LIST_BUTTON_AFTER_REMOVE,
+                    "2 Cannot find option to add article to reading list",
+                    5
+            );
+        }
     }
 
     public void removeArticleFromSavedIfItAdded() {
-        if (this.isElementPresent(OPTIONS_REMOVE_FROM_MY_LIST_BUTTON)) {
-            this.waitForElementAndClick(
-                    OPTIONS_REMOVE_FROM_MY_LIST_BUTTON,
-                    "Cannot click button to remove article from saved",
-                    5
-            );
 
-            this.waitForElementPresent(
-                    OPTIONS_ADD_TO_MY_LIST_BUTTON,
-                    "Cannot find button to add an article to saved list after removing it from this list before",
-                    5
-            );
+        if (Platform.getInstance().isMw()) {
+            if (this.isElementPresent(OPTIONS_REMOVE_FROM_MY_LIST_BUTTON_BEFORE_REMOVE)) {
+                this.waitForElementAndClick(
+                        OPTIONS_REMOVE_FROM_MY_LIST_BUTTON_BEFORE_REMOVE,
+                        "Cannot click button to remove article from saved",
+                        5
+                );
 
+                this.waitForElementPresent(
+                        OPTIONS_ADD_TO_MY_LIST_BUTTON_AFTER_REMOVE,
+                        "Cannot find button to add an article to saved list after removing it from this list before",
+                        5
+                );
+            }
+        } else {
+            if (this.isElementPresent(OPTIONS_REMOVE_FROM_MY_LIST_BUTTON)) {
+                this.waitForElementAndClick(
+                        OPTIONS_REMOVE_FROM_MY_LIST_BUTTON,
+                        "Cannot click button to remove article from saved",
+                        5
+                );
+
+                this.waitForElementPresent(
+                        OPTIONS_ADD_TO_MY_LIST_BUTTON,
+                        "Cannot find button to add an article to saved list after removing it from this list before",
+                        5
+                );
+            }
         }
+
+
     }
 
     public void closeOverlayIfSaveArticleFirstTime() {

@@ -10,7 +10,7 @@ public class MWMyListsPageObject extends MyListsPageObject {
         ARTICLE_BY_TITLE_TPL = "xpath://*[@id='mw-content-text']/ul/li/a[@class='title']/h3[contains(text(),'{TITLE}')]";
         //REMOVED_FROM_SAVED_BUTTON = "xpath://ul[contains(@class,'watchlist')]//h3[contains(text(),'{TITLE}')]/../../div[contains(@class,'watched')]";
         REMOVE_FROM_SAVED_BUTTON = "xpath://*[@id='content']/div/ul/li[contains (@title, '{TITLE}')]/a[contains (@class,'watched')]";
-        }
+    }
 
     public MWMyListsPageObject(RemoteWebDriver driver) {
         super(driver);

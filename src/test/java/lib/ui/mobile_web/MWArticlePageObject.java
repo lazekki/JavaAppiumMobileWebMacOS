@@ -12,8 +12,13 @@ public class MWArticlePageObject extends ArticlePageObject {
         OPTIONS_ADD_TO_MY_LIST_BUTTON_IN_MY_LIST = "xpath://*[@id='content']/div/ul/li/a[contains (@title, 'Add this page to your watchlist')]";
         OPTIONS_REMOVE_FROM_MY_LIST_BUTTON_IN_MY_LIST = "xpath://*[@id='content']/div/ul/li/a[contains (@title, 'Remove this page from your watchlist')]";
         */
-        OPTIONS_ADD_TO_MY_LIST_BUTTON = "css:a#ca-watch.mw-ui-icon";
-        OPTIONS_REMOVE_FROM_MY_LIST_BUTTON = "xpath://*[@id='content']/div/nav/ul/li/a[@data-event-name='menu.watch'][@title='Remove this page from your watchlist']";
+        OPTIONS_ADD_TO_MY_LIST_BUTTON = "xpath://*[@id='ca-watch'][contains (@title, 'Watch')]";
+        OPTIONS_REMOVE_FROM_MY_LIST_BUTTON = "xpath://*[@id='ca-watch'][contains (@title, 'Remove this page from your watchlist')]";
+
+        OPTIONS_ADD_TO_MY_LIST_BUTTON_AFTER_REMOVE = "xpath://*[@id='ca-watch'][contains (@title, 'Add this page to your watchlist')]";
+        OPTIONS_REMOVE_FROM_MY_LIST_BUTTON_BEFORE_REMOVE = "xpath://*[@id='ca-watch'][contains (@title, 'Unwatch')]";
+
+
     }
 
     public MWArticlePageObject(RemoteWebDriver driver) {
