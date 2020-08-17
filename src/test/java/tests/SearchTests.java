@@ -18,8 +18,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class SearchTests extends CoreTestCase {
 
     private static final String
-            CONTAINS_TEXT_SEARCH = "//*[contains(@text,'Search…')]",
-            CONTAINS_TEXT_SEARCH_WIKIPEDIA = "//*[contains(@text,'Search Wikipedia')]",
             ORG_WIKIPEDIA_ID_SEARCH_CONTAINER = "org.wikipedia:id/search_container",
             ORG_WIKIPEDIA_ID_SEARCH_SRC_TEXT = "org.wikipedia:id/search_src_text";
 
@@ -67,36 +65,23 @@ public class SearchTests extends CoreTestCase {
     }
 
     @Test
-    public void testMatchSearchResults() {
+    public void testMatchSearchResults() throws Exception {
 
         String search_string = "Java";
-        String id_locator = "org.wikipedia:id/page_list_item_title";
+        String id_locator = "//*[@class='page-summary with-watchstar']/a[contains (@class, 'title')]";
 
-        MainPageObject.waitForElementAndClick(
-                CONTAINS_TEXT_SEARCH_WIKIPEDIA,
-                "Cannot find 'Search Wikipedia' input",
-                10
-        );
+        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
+        SearchPageObject.initSearchInput();
+        SearchPageObject.typeSearchLine("Java");
 
-        MainPageObject.waitForElementAndSendKeys(
-                CONTAINS_TEXT_SEARCH,
-                search_string,
-                "Cannot find search input",
-                10
-        );
+        assertThat("Amount of found articles more than 0 ", (SearchPageObject.getAmountOfFoundArticles() > 0));
 
-        MainPageObject.waitForElementPresent(
-                id_locator,
-                "Doesn't get search result list",
-                30
-        );
-
-        List<WebElement> elements = driver.findElements(By.id(id_locator));
+        List<WebElement> elements = driver.findElements(By.xpath(id_locator));
         List<String> actual = new ArrayList<>();
 
         Iterator<WebElement> iterator = elements.iterator();
         while (iterator.hasNext()) {
-            actual.add(iterator.next().getAttribute("text"));
+            actual.add(iterator.next().getAttribute("data-title"));
         }
 
         for (String item : actual) {

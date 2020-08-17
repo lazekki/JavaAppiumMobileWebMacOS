@@ -104,7 +104,7 @@ abstract public class SearchPageObject extends MainPageObject {
         this.waitForElementPresent(
                 SEARCH_RESULT_ELEMENT,
                 "Cannot find anything by the request.",
-                20
+                5
         );
 
         return this.getAmountOfElements(SEARCH_RESULT_ELEMENT);
