@@ -76,7 +76,7 @@ public class SearchTests extends CoreTestCase {
 
         SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
         SearchPageObject.initSearchInput();
-        SearchPageObject.typeSearchLine("Java");
+        SearchPageObject.typeSearchLine(search_string);
 
         assertThat("Amount of found articles more than 0 ", (SearchPageObject.getAmountOfFoundArticles() > 0));
 
@@ -88,12 +88,13 @@ public class SearchTests extends CoreTestCase {
             actual.add(iterator.next().getAttribute("data-title"));
         }
 
+        //Assert result depends on method you select to control if search_substring is within found string
+        //if you need strict test, use
+        //Assert.assertTrue(item.contains(search_string));
+        //instead of containsIgnoreCase.
+
         for (String item : actual) {
             String err_msg = "No search_string within item " + item;
-            //Assert result depends on method you select to control if search_substring is within found string
-            //if you need strict test, use
-            //Assert.assertTrue(item.contains(search_string));
-            //instead of containsIgnoreCase.
             Assert.assertTrue(err_msg, StringUtils.containsIgnoreCase(item, search_string));
         }
     }
