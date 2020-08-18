@@ -1,9 +1,13 @@
 package tests;
 
 import lib.CoreTestCase;
+import lib.Platform;
+import lib.ui.AuthorizationPageObject;
 import lib.ui.MainPageObject;
 import lib.ui.SearchPageObject;
 import lib.ui.factories.SearchPageObjectFactory;
+import org.apache.commons.lang3.StringUtils;
+import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -68,7 +72,7 @@ public class SearchTests extends CoreTestCase {
     public void testMatchSearchResults() throws Exception {
 
         String search_string = "Java";
-        String id_locator = "//*[@class='page-summary with-watchstar']/a[contains (@class, 'title')]";
+        String id_locator = "//*[@class='page-summary']/a[contains(@class, 'title')]";
 
         SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
         SearchPageObject.initSearchInput();
@@ -85,7 +89,12 @@ public class SearchTests extends CoreTestCase {
         }
 
         for (String item : actual) {
-            assertThat(search_string, item.contains(search_string));
+            String err_msg = "No search_string within item " + item;
+            //Assert result depends on method you select to control if search_substring is within found string
+            //if you need strict test, use
+            //Assert.assertTrue(item.contains(search_string));
+            //instead of containsIgnoreCase.
+            Assert.assertTrue(err_msg, StringUtils.containsIgnoreCase(item, search_string));
         }
     }
 
